@@ -8,4 +8,4 @@ spec:
       image: nginx
     - name: almalinux
       image: almalinux
-      command: ["sh -c", "sleep 100"]
+      command: ["sh", "sleep 100"]
