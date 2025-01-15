@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotations
+  annotations:
+    registry: https://docker.hub.com
+spec:
+  containers: 
+    - name: nginx
+      image: nginx
+
+# Annotations are key-value pairs that can be attached to objects in Kubernetes
+# They are not used to identify or select objects, but they can be used to store arbitrary metadata
+# Annotations are not used by Kubernetes itself, but they can be used by tools and libraries
+# tools like kubectl, kubeadm, and kubefed use annotations to store information about the object
+# libraries like client-go use annotations to store information about the object
+# kubectl uses annotations to store information about the object. information like the last time the object was modified, the last time the object was accessed, and the last time the object was backed up
+
+

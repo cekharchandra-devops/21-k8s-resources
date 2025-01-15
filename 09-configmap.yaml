@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  labels:
+    concept: configmap
+    project: expense
+data:
+  DB_Host: mysql
+  ROOT_PASSWORD: ExpenseApp@1
+
+---
+
+apiVersion: v1
+metadata:
+  name: configmap-pod
+  labels:
+    concept: configmap
+    project: expense
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      envFrom:
+        - configMapRef:
+            name: db-config
+      # env:
+      #   - name: DB_Host
+      #     valueFrom:
+      #       configMapKeyRef:
+      #         name: db-config
+      #         key: DB_Host
+      #   - name: ROOT_PASSWORD
+      #     valueFrom:
+      #       configMapKeyRef:
+      #         name: db-config
+      #         key: ROOT_PASSWORD
