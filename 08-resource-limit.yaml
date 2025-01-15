@@ -9,7 +9,7 @@ spec:
   containers:
     - name: nginx
       image: nginx
-      resouces:
+      resources:
         requests:
           memory: "64Mi"
           cpu: "0.1"
