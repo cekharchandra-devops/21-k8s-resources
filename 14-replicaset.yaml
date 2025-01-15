@@ -38,3 +38,8 @@ spec:
       port: 80
       targetPort: 80
       name: nginx-svc-port
+
+# replicaset cannot apply the changes to the existing pods. it can only create new pods or delete existing pods.
+# replicaset is a higher level abstraction of the deployment. it is recommended to use deployment instead of replicaset.
+# deployment provides more features like rolling updates, rollback, etc.
+# replicaset is used when we need fine-grained control over the pods.
