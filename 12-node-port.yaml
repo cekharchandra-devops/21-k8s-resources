@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-port
+  labels:
+    concept: node-port
+    project: expense
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  labels:
+    concept: node-port
+    project: expense
+spec:
+  type: NodePort
+  selector:
+    concept: node-port
+    project: expense
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080

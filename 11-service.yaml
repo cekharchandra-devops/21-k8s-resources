@@ -25,3 +25,12 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
+
+# by default, the service is of type ClusterIP. it helps in internal communication between pods.
+# to expose the service to the outside world, we need to change the type to LoadBalancer
+# type: LoadBalancer will create a load balancer in the cloud provider and expose the service to the outside world
+# type: NodePort will expose the service on a static port on each node. it will be accessible on the node's IP address at the NodePort
+# type: ExternalName will expose the service using an arbitrary name (e.g. my-service.my-namespace.svc.cluster.local)
+# for type: NodePort, we can specify the nodePort value. if not specified, k8s will assign a random port in the range 30000-32767
+# for type: LoadBalancer, we can specify the loadBalancerIP value. if not specified, k8s will assign a random IP address
+# for type: NodePort, we can access the service using the node's IP address and the nodePort even if the service is not running on that node. 
