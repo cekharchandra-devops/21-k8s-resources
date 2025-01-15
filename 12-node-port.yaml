@@ -27,3 +27,17 @@ spec:
       port: 80
       targetPort: 80
       nodePort: 30080
+
+# for type: NodePort, we can access the service using the node's IP address and the nodePort even if the service is not running on that node.
+
+# Request Flow for NodePort Service
+# External Client:
+# An external client sends a request to the IP address of any node in the Kubernetes cluster on the specified nodePort.
+# NodePort:
+# The request arrives at the node's IP address on the specified nodePort. Kubernetes configures the node to listen on this port and forward the traffic to the appropriate service.
+# Kube-Proxy:
+# The kube-proxy component running on each node intercepts the request on the nodePort and forwards it to the corresponding service.
+# Service:
+# The service receives the request and uses its selector to identify the pods that match the specified labels.
+# Pod:
+# The service forwards the request to one of the matching pods on the specified targetPort.
