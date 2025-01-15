@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx-rs
@@ -6,7 +6,7 @@ metadata:
     concept: rs
     project: expense
 spec:
-  replicaCount: 3
+  replicas: 3
   selector:
     matchLabels:
       concept: rs
@@ -28,3 +28,13 @@ metadata:
   labels:
     concept: rs
     project: expense
+spec:
+  type: LoadBalancer
+  selector:
+    concept: rs
+    project: expense
+  ports:  
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: nginx-svc-port
