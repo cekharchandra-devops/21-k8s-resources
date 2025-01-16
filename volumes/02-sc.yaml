@@ -3,6 +3,7 @@ kind: StorageClass
 metadata:
   name: sc
 provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: gp2
   encrypted: "true"
