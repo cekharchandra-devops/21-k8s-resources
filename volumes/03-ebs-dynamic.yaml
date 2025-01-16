@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: ebs-dynamic
 spec:
-  storageClassName: sc
+  storageClassName: "sc"
   resources:
     requests:
       storage: 20Gi
@@ -19,6 +19,8 @@ metadata:
     app: ebs-dynamic
     env: prod
 spec:
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1d
   containers:
     - name: nginx
       image: nginx

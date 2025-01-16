@@ -4,12 +4,12 @@ metadata:
   name: sc
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
-parameters:
-  type: gp2
-  encrypted: "true"
-  iopsPerGB: "10"
-  fsType: ext4
-  volumeBindingMode: WaitForFirstConsumer
+# parameters:
+#   type: gp2
+#   encrypted: "true"
+#   iopsPerGB: "10"
+#   fsType: ext4
+#   volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Retain
 # allowVolumeExpansion: true
 # allowedTopologies:
