@@ -2,14 +2,13 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: sc
-provisioner: ebs.csi.aws.com
+provisioner:  ebs.csi.aws.com 
 volumeBindingMode: WaitForFirstConsumer
 # parameters:
 #   type: gp2
 #   encrypted: "true"
 #   iopsPerGB: "10"
 #   fsType: ext4
-#   volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Retain
 # allowVolumeExpansion: true
 # allowedTopologies:
@@ -25,3 +24,8 @@ reclaimPolicy: Retain
 # mountOptions:
 #   - 
 
+# provisioner: kubernetes.io/aws-ebs vs  ebs.csi.aws.com  
+# CSI ebs.csi.aws.com Driver
+# The CSI ebs.csi.aws.com driver is a more modern and flexible way to provision AWS EBS volumes. 
+# It is part of the Container Storage Interface (CSI) initiative, which aims to standardize storage provisioning
+#  across different storage providers.
