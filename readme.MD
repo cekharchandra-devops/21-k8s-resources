@@ -116,4 +116,61 @@ spec:
   containers:
     - name: app-container
       image: myapp:latest
-``
+```
+# Kubernetes Volumes
+
+In Kubernetes, pods are ephemeral objects, meaning that any data stored inside a pod will be lost when the pod is terminated. To overcome this limitation, Kubernetes provides volumes, which offer persistent storage for application data. Volumes can be used to store data that needs to persist beyond the lifecycle of a single pod.
+
+**Types of Volumes**
+Kubernetes supports several types of volumes, including:
+
+**EmptyDir:** A temporary directory that is created when a pod is assigned to a node and exists as long as that pod is running on that node.
+**HostPath:** Mounts a file or directory from the host node's filesystem into a pod.
+**PersistentVolume (PV):** A piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes.
+**PersistentVolumeClaim (PVC):** A request for storage by a user. It is similar to a pod in that pods consume node resources, and PVCs consume PV resources.
+AWS EBS: An Amazon Web Services Elastic Block Store volume.
+AWS EFS: An Amazon Web Services Elastic File System volume.
+
+
+In Kubernetes, there are two main methods for provisioning storage: static provisioning and dynamic provisioning. Both methods are used to create Persistent Volumes (PVs) that can be claimed by Persistent Volume Claims (PVCs), but they differ in how the storage is allocated and managed.
+
+Static Provisioning
+In static provisioning, the cluster administrator manually creates Persistent Volumes (PVs) ahead of time. These PVs are then available for users to claim using Persistent Volume Claims (PVCs).
+
+Advantages
+Control: Administrators have full control over the storage configuration and allocation.
+Predictability: The storage is pre-allocated, so there is no uncertainty about the availability of resources.
+
+Disadvantages
+Manual Management: Requires manual intervention to create and manage PVs.
+Scalability: Not ideal for environments with a large number of dynamic storage needs.
+
+
+Dynamic Provisioning
+In dynamic provisioning, storage is automatically provisioned when a Persistent Volume Claim (PVC) is created. This is achieved using Storage Classes, which define the parameters for the storage to be provisioned.
+
+Advantages
+Automation: Reduces the need for manual intervention by administrators.
+Scalability: Ideal for environments with dynamic and unpredictable storage needs.
+Flexibility: Allows users to request storage on-demand with specific parameters.
+
+Disadvantages
+Complexity: Requires proper configuration of Storage Classes and provisioners.
+Control: Administrators have less direct control over the exact storage configuration.
+
+
+In static provisioning, we have to do following things:
+
+1. create ebs volume 
+2. install csi drivers
+3. give proper permission to eks cluster to access ebs volume
+4. create PV resource(physical represetation of ebs volume)
+5. create PVC resource
+6. use PVC as volume in our depolyment manifest files
+
+Pods must be created on same zone where ebs volume created.
+
+aws-ebs-csi dirver install:
+
+kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.38"
+
