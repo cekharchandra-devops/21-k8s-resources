@@ -29,7 +29,7 @@ metadata:
     app: nginx
     env: prod
 spec:
-  type: LoadBalancer
+  # type: LoadBalancer
   selector:
     app: nginx
     env: prod
