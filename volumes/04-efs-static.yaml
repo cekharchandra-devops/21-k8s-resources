@@ -1,6 +1,6 @@
 #  create EFS volume
 #  install driver and add sg rule in EFS SG to allow connection from EKS on 2049
-#  add efs policy permission to eks I am role
+#  add efs policy permission in eks I am role
 #  pv, pvc
 
 apiVersion: v1
